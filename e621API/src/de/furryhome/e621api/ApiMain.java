@@ -13,7 +13,7 @@ class ApiMain {
 	/*
 	 * Getter
 	 */
-	public static final boolean isLoginCredentialsSet() {	return isLoginCredentialsSet; }
+	public static final boolean isLoginCredentialsSet() { return isLoginCredentialsSet; }
 	protected static final String getPasswordHash() { return PasswordHash; }
 	protected static final String getUsername() { return Username; }
 	
@@ -26,9 +26,9 @@ class ApiMain {
 	
 	public final void setLogincredentials(String Username, String Password) throws e621apiObjectException {
 		if (Username.length() == 0 || Password.length() == 0) { throw new e621apiObjectException("Username or password may not be empty."); }
+		setLoginCredentialsSet(true);
 		setUsername(Username);
 		setPasswordHash(this.HashPassword(Password));
-		setLoginCredentialsSet(true);
 	}
 
 	/*
@@ -40,6 +40,7 @@ class ApiMain {
 			md = MessageDigest.getInstance("SHA-1");
 		} catch (NoSuchAlgorithmException e) {
 			System.err.println("ERROR: Alghorithm SHA-1 not found!");
+			setLoginCredentialsSet(false);
 			return "";
 		}
         md.update(Password.getBytes());

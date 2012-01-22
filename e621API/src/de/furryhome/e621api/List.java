@@ -10,7 +10,7 @@ import org.xml.sax.XMLReader;
 
 import de.furryhome.e621api.Exceptions.e621apiObjectException;
 
-public class List extends ApiMain {
+public final class List extends ApiMain {
 	private static final String LIST_URL = "http://www.e621.net/post/index.xml";
 	private static int count = 0;
 	private int limit = 10, page = 1, offset = 0;
