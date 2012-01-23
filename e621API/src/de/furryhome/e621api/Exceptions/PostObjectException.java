@@ -1,8 +1,8 @@
 package de.furryhome.e621api.Exceptions;
 
 /**
- * The class {@code e621ApiException} is a subclass from {@code Exception}.
- * It indicates Exceptions caused by {@code ApiMain} and its subclasses!
+ * The class {@code PostObjectException} is a subclass from {@code Exception}.
+ * It indicates Exceptions caused by content abbreviated objects like {@code ListItem}!
  * Further to the common exception class, it saves the initialized data into fields for future use!
  *
  * @author	Jens Eichler
@@ -10,7 +10,7 @@ package de.furryhome.e621api.Exceptions;
  * @version	1.0
  */
 
-public final class e621ApiException extends Exception {
+public final class PostObjectException extends Exception {
 	private static final long serialVersionUID = 6356853706129395330L;
 	@SuppressWarnings("unused")
 	private String message;
@@ -28,7 +28,7 @@ public final class e621ApiException extends Exception {
      *          later retrieval by the {@link #getMessage()} method.
      * @since  1.0
      */
-	public e621ApiException(String message) {
+	public PostObjectException(String message) {
 		super(message);
 		this.message = message;
 	}
@@ -47,7 +47,7 @@ public final class e621ApiException extends Exception {
      *         unknown.)
      * @since  1.0
      */
-	public e621ApiException(Throwable cause) {
+	public PostObjectException(Throwable cause) {
 		super(cause);
 		this.cause = cause;
 	}
@@ -66,7 +66,7 @@ public final class e621ApiException extends Exception {
      *         unknown.)
      * @since  1.0
      */
-	public e621ApiException(String message, Throwable cause) {
+	public PostObjectException(String message, Throwable cause) {
 		super(message, cause);
 		this.message = message;
 		this.cause = cause;
@@ -86,7 +86,7 @@ public final class e621ApiException extends Exception {
      *                           be writable
      * @since  1.0
      */
-    protected e621ApiException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected PostObjectException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     	super(message, cause, enableSuppression, writableStackTrace);
     	this.message = message;
 		this.cause = cause;

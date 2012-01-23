@@ -6,7 +6,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import de.furryhome.e621api.Exceptions.postObjectException;
+import de.furryhome.e621api.Exceptions.PostObjectException;
 
 class ListParser extends DefaultHandler {
 	private ArrayList<ListItem> postList;
@@ -65,7 +65,7 @@ class ListParser extends DefaultHandler {
 				post.setHas_children(Boolean.valueOf(atts.getValue("has_children")));
 				post.setHas_notes(Boolean.valueOf(atts.getValue("has_notes")));
 				post.setHas_comments(Boolean.valueOf(atts.getValue("has_comments")));
-			} catch(postObjectException e) {}
+			} catch(PostObjectException e) {}
 			postList.add(post);
 		}
 	}
