@@ -16,7 +16,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 class Downloader {
-	private InputStream DownloadEntity(String URL, ArrayList<NameValuePair> Data) {
+	protected InputStream DownloadEntity(String URL, ArrayList<NameValuePair> Data) {
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.addAll(Data);
 		

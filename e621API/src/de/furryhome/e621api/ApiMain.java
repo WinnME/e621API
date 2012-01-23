@@ -1,9 +1,16 @@
 package de.furryhome.e621api;
 
+/**
+ * The superclass for all other API relevant functions.
+ *
+ * @author Jens Eichler
+ * @version 1.0
+ */
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import de.furryhome.e621api.Exceptions.e621apiObjectException;
+import de.furryhome.e621api.Exceptions.e621ApiException;
 
 class ApiMain {
 	private static String Username = "";
@@ -24,8 +31,8 @@ class ApiMain {
 	private static final void setUsername(String username) { Username = username; }
 	private static final void setLoginCredentialsSet(Boolean Value) { isLoginCredentialsSet = Value; }
 	
-	public final void setLogincredentials(String Username, String Password) throws e621apiObjectException {
-		if (Username.length() == 0 || Password.length() == 0) { throw new e621apiObjectException("Username or password may not be empty."); }
+	public final void setLogincredentials(String Username, String Password) throws e621ApiException {
+		if (Username.length() == 0 || Password.length() == 0) { throw new e621ApiException("Username or password may not be empty."); }
 		setLoginCredentialsSet(true);
 		setUsername(Username);
 		setPasswordHash(this.HashPassword(Password));

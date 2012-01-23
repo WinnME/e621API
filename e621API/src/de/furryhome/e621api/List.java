@@ -8,9 +8,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import de.furryhome.e621api.Exceptions.e621apiObjectException;
+import de.furryhome.e621api.Exceptions.e621ApiException;
 
 public final class List extends ApiMain {
+	@SuppressWarnings("unused")
 	private static final String LIST_URL = "http://www.e621.net/post/index.xml";
 	private static int count = 0;
 	private int limit = 10, page = 1, offset = 0;
@@ -31,7 +32,7 @@ public final class List extends ApiMain {
 		this.atags = Tags;
 		this.tagArraytoString();
 	}
-	public List(int Page, int Limit, String Tags, String TagLimiter) throws e621apiObjectException {
+	public List(int Page, int Limit, String Tags, String TagLimiter) throws e621ApiException {
 		super();
 		this.page = Page;
 		this.limit = Limit;
@@ -49,7 +50,7 @@ public final class List extends ApiMain {
 		this.atags = Tags;
 		this.tagArraytoString();
 	}
-	public List(int Page, String Tags, String TagLimiter) throws e621apiObjectException {
+	public List(int Page, String Tags, String TagLimiter) throws e621ApiException {
 		super();
 		this.page = Page;
 		this.stags = Tags;
@@ -60,7 +61,7 @@ public final class List extends ApiMain {
 		this.atags = Tags;
 		this.tagArraytoString();
 	}
-	public List(String Tags, String TagLimiter) throws e621apiObjectException {
+	public List(String Tags, String TagLimiter) throws e621ApiException {
 		super();
 		this.stags = Tags;
 		this.tagStringtoArray(TagLimiter);
@@ -83,7 +84,7 @@ public final class List extends ApiMain {
 		this.atags = Tags;
 		this.tagArraytoString();
 	}
-	public void setTags(String Tags, String TagLimiter) throws e621apiObjectException {
+	public void setTags(String Tags, String TagLimiter) throws e621ApiException {
 		this.stags = Tags;
 		this.tagStringtoArray(TagLimiter);
 	}
@@ -103,8 +104,8 @@ public final class List extends ApiMain {
 	/*
 	 * Helferfunktionen
 	 */
-	private void tagStringtoArray(String Delimiter) throws e621apiObjectException {
-		if (Delimiter.length() == 0) { throw new e621apiObjectException("The tag delimiter may not be an empty string."); }
+	private void tagStringtoArray(String Delimiter) throws e621ApiException {
+		if (Delimiter.length() == 0) { throw new e621ApiException("The tag delimiter may not be an empty string."); }
 		atags =  Pattern.compile(Delimiter).split(stags);
 	}
 	private void tagArraytoString() {
