@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="de/furryhome/e621api/Downloader.java" kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/sax2r3/sax2.jar"/>
-	<classpathentry kind="lib" path="lib/piccolo-1.04/Piccolo.jar"/>
+	<classpathentry excluding="de/furryhome/e621api/Downloader.java|de/furryhome/e621api/ListParser.java" kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/resty/resty-0.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/httpcomponents-client-4.1.2/httpclient-4.1.2.jar"/>
-	<classpathentry kind="lib" path="lib/httpcomponents-client-4.1.2/httpclient-cache-4.1.2.jar"/>
-	<classpathentry kind="lib" path="lib/httpcomponents-client-4.1.2/httpcore-4.1.2.jar"/>
-	<classpathentry kind="lib" path="lib/httpcomponents-client-4.1.2/httpmime-4.1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,16 +9,16 @@ package de.furryhome.test;
  */
 
 
-import us.monoid.web.Resty;
-import us.monoid.web.XMLResource;
 import de.furryhome.e621api.List;
 
 public class Test {
 	private static final int FETCH_COUNT = 10;
-	List pl = new List(1, FETCH_COUNT);
+	List pl = new List(FETCH_COUNT);
 	
 	public static void main(String[] args) {
 		System.out.println("Tetser Start!");
+		
+		/*
 		Resty a = new Resty();
 		
 		try {
@@ -28,5 +28,7 @@ public class Test {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
+	
 }
