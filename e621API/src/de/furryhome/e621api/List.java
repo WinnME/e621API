@@ -2,8 +2,6 @@ package de.furryhome.e621api;
 
 import java.util.regex.Pattern;
 
-import de.furryhome.e621api.Exceptions.e621ApiException;
-
 public final class List extends ApiMain {
 	@SuppressWarnings("unused")
 	private static final String LIST_URL = "http://www.e621.net/post/index.xml";
@@ -24,7 +22,7 @@ public final class List extends ApiMain {
 		this.limit = Limit;
 		this.setTags(Tags);
 	}
-	public List(int Limit, String Tags, String TagLimiter) throws e621ApiException {
+	public List(int Limit, String Tags, String TagLimiter) throws IllegalArgumentException {
 		super();
 		this.limit = Limit;
 		this.setTags(Tags, TagLimiter);
@@ -33,7 +31,7 @@ public final class List extends ApiMain {
 		super();
 		this.setTags(Tags);
 	}
-	public List(String Tags, String TagLimiter) throws e621ApiException {
+	public List(String Tags, String TagLimiter) throws IllegalArgumentException {
 		super();
 		this.setTags(Tags, TagLimiter);
 	}
@@ -53,23 +51,15 @@ public final class List extends ApiMain {
 		this.atags = Tags;
 		this.tagArraytoString();
 	}
-	public void setTags(String Tags, String TagLimiter) throws e621ApiException {
+	public void setTags(String Tags, String TagLimiter) throws IllegalArgumentException {
 		this.stags = Tags;
 		this.tagStringtoArray(TagLimiter);
 	}
 	
-	public void gotoFirstPage() {
-		this.page = getFirstPage();
-	}
-	public void gotoLastPage() {
-		this.page = getLastPage();
-	}
-	public void gotoNextPage() {
-		this.page++;
-	}
-	public void gotoPreviousPage() {
-		this.page--;
-	}
+	public void gotoFirstPage() { this.page = getFirstPage(); }
+	public void gotoLastPage() { this.page = getLastPage(); }
+	public void gotoNextPage() { this.page++; }
+	public void gotoPreviousPage() { this.page--; }
 	
 	private void tagStringtoArray(String Delimiter) throws IllegalArgumentException {
 		if (Delimiter.length() == 0) { throw new IllegalArgumentException("empty delimiter is not allowed"); }
