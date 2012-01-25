@@ -68,7 +68,7 @@ public final class List extends ApiMain {
 		Resty resty = new Resty();
 		XMLResource xml = null;
 		String Data = "";
-		if (List.isLoginCredentialsSet()) Data = "username=" + List.getUsername() + "&password=" + List.getPasswordHash() + "&";
+		if (List.isLoginCredentialsSet()) Data = "login=" + List.getUsername() + "&password_hash=" + List.getPasswordHash() + "&";
 		try {
 			Content postheader = Resty.form(Data + "page=" + this.page + "&tags=" + this.stags + "&limit=" + this.limit);
 			xml = resty.xml(LIST_URL, postheader);
