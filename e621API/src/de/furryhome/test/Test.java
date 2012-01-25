@@ -13,11 +13,10 @@ import de.furryhome.e621api.List;
 
 public class Test {
 	private static final int FETCH_COUNT = 10;
-	List pl = new List(FETCH_COUNT);
 	
 	public static void main(String[] args) {
 		System.out.println("Tetser Start!");
-		
+		List pl = new List(FETCH_COUNT);
 		/*
 		Resty a = new Resty();
 		

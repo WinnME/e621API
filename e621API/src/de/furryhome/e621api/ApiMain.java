@@ -125,11 +125,10 @@ class ApiMain {
      * @param	Password					A String consisting of the e621.net <u>cleartext</u> account password. 
      *
      * @throws	IllegalArgumentException	Is thrown when either a blank username or password is being supplied.
-     * @throws	NoSuchAlgorithmException	Is thrown when the password can't be hashed, because the required SHA1 digest is not available to the system.
      *
      * @since	1.0
      */
-	public final void setLoginCredentials(String Username, String Password) throws IllegalArgumentException, NoSuchAlgorithmException {
+	public final void setLoginCredentials(String Username, String Password) throws IllegalArgumentException {
 		if (Username.length() == 0) { throw new IllegalArgumentException("empty username is not valid"); }
 		if (Password.length() == 0) { throw new IllegalArgumentException("empty password is not valid"); }
 		setUsername(Username);
@@ -140,27 +139,32 @@ class ApiMain {
     /**
      * A method to hash the supplied String using SHA1 digest.<br>
      * If an empty string is supplied, the method returns prematurely an empty string, skipping all logic.
+     * Theoretically an empty string will be returned if SHA-1 digest is not available to the system!
+     * This should be pure theory because every system has that, thus i saved on additional exception handling.
      * 
-     *
+     * 
      * @param	InputString					Any String to be hashed
      *
      * @return	The SHA1 hashed inputString or an empty string, if the provided input was also empty.
      * 
-     * @throws	NoSuchAlgorithmException	Throws when SHA1 digest is not available to the system.
-     *
      * @since	1.0
      */
-	protected final String HashSHA1(String InputString) throws NoSuchAlgorithmException {
+	protected final String HashSHA1(String InputString) {
 		if (InputString.length() == 0) {
 			return "";
 		}
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
-        md.update(InputString.getBytes());
-        byte byteData[] = md.digest();
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        return sb.toString();
+        MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-1");
+			md.update(InputString.getBytes());
+	        byte byteData[] = md.digest();
+	        StringBuffer sb = new StringBuffer();
+	        for (int i = 0; i < byteData.length; i++) {
+	        	sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			return "";
+		} //SHA-1 should be available on all JRE's
     }
 }

@@ -2,8 +2,11 @@ package de.furryhome.e621api;
 
 import java.util.regex.Pattern;
 
+import us.monoid.web.Content;
+import us.monoid.web.Resty;
+import us.monoid.web.XMLResource;
+
 public final class List extends ApiMain {
-	@SuppressWarnings("unused")
 	private static final String LIST_URL = "http://www.e621.net/post/index.xml";
 	private static int count = 0;
 	private int limit = 10, page = 1, offset = 0;
@@ -60,6 +63,24 @@ public final class List extends ApiMain {
 	public void gotoLastPage() { this.page = getLastPage(); }
 	public void gotoNextPage() { this.page++; }
 	public void gotoPreviousPage() { this.page--; }
+	
+	public void getContent() {
+		Resty resty = new Resty();
+		XMLResource xml = null;
+		String Data = "";
+		if (List.isLoginCredentialsSet()) Data = "username=" + List.getUsername() + "&password=" + List.getPasswordHash() + "&";
+		try {
+			Content postheader = Resty.form(Data + "page=" + this.page + "&tags=" + this.stags + "&limit=" + this.limit);
+			xml = resty.xml(LIST_URL, postheader);
+			List.count = Integer.valueOf(xml.get("/posts").item(0).getAttributes().getNamedItem("count").getNodeValue());
+			this.offset = Integer.valueOf(xml.get("/posts").item(0).getAttributes().getNamedItem("offset").getNodeValue());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (xml != null) {
+			}
+		}
+	}
 	
 	private void tagStringtoArray(String Delimiter) throws IllegalArgumentException {
 		if (Delimiter.length() == 0) { throw new IllegalArgumentException("empty delimiter is not allowed"); }
