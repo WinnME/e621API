@@ -47,7 +47,7 @@ public final class ListItem {
 				throw new IllegalAccessException(fieldName + " is not initialized yet");
 			}
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException e) {}
-		return false;
+		return null;
 	}
 		
 	protected final void setMd5(String md5) throws IllegalAccessException {	this.setFieldValue("md5", md5); }
